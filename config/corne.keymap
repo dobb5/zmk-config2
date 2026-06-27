@@ -88,6 +88,15 @@
         };
     };
 
+    macros {
+        test: test {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none>;
+            label = "TEST";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -99,10 +108,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB    &kp Q      &kp W  &kp E     &kp R  &kp T       &kp Y      &kp U  &kp I     &kp O    &kp P     &kp BSPC
-&kp ESC    &kp A      &kp S  &kp D     &kp F  &kp G       &kp H      &kp J  &kp K     &kp L    &kp SEMI  &kp ENTER
-&kp LSHFT  &kp TILDE  &kp Z  &kp X     &kp C  &kp V       &kp B      &kp N  &kp M     &kp DOT  &kp FSLH  &kp RIGHT_SHIFT
-                             &kp LGUI  &mo 1  &kp BSPC    &kp SPACE  &mo 2  &kp RALT
+&kp TAB    &kp Q      &kp W  &kp E     &kp R  &kp T                      &kp Y      &kp U  &kp I             &kp O    &kp P     &kp BSPC
+&kp ESC    &kp A      &kp S  &kp D     &kp F  &kp G                      &kp H      &kp J  &kp K             &kp L    &kp SEMI  &kp ENTER
+&kp LSHFT  &kp TILDE  &kp Z  &kp X     &kp C  &kp V                      &kp B      &kp N  &kp M             &kp DOT  &kp FSLH  &kp RIGHT_SHIFT
+                             &kp LGUI  &mo 2  &lt 3 LS(LA(LC(LG(F))))    &kp SPACE  &mo 1  &kp LEFT_CONTROL
             >;
         };
 
@@ -114,14 +123,14 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB     &bt BT_SEL 0  &bt BT_SEL 1  &trans        &trans        &trans           &trans        &trans  &trans    &trans  &trans  &kp BSPC
-&bt BT_CLR  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5           &kp NUMBER_6  &kp N7  &kp N8    &kp N9  &kp N0  &trans
-&kp LSHFT   &trans        &trans        &trans        &trans        &trans           &trans        &trans  &trans    &trans  &trans  &trans
-                                        &kp LGUI      &trans        &kp BACKSPACE    &kp SPACE     &trans  &kp RALT
+&kp TAB    &bt BT_SEL 0  &bt BT_SEL 1  &trans        &trans        &trans           &trans        &trans  &trans    &trans  &trans  &kp BSPC
+&kp ESC    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5           &kp NUMBER_6  &kp N7  &kp N8    &kp N9  &kp N0  &trans
+&kp LSHFT  &trans        &trans        &trans        &trans        &trans           &trans        &trans  &trans    &trans  &trans  &trans
+                                       &kp LGUI      &trans        &kp BACKSPACE    &kp SPACE     &trans  &kp RALT
             >;
         };
 
-        raise_layer {
+        Special_Chars {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
             // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
@@ -129,10 +138,28 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp TILDE        &kp AT  &kp HASH  &kp DLLR    &kp PRCNT        &kp MINUS  &kp EQUAL      &kp LEFT_PARENTHESIS  &kp RPAR  &kp ASTERISK  &kp BSPC
-&kp LCTRL  &kp EXCLAMATION  &kp AT  &kp HASH  &kp DOLLAR  &kp PERCENT      &kp CARET  &kp AMPERSAND  &kp LBKT              &kp RBKT  &kp BSLH      &kp GRAVE
+&kp TAB    &kp TILDE        &trans  &trans    &trans      &trans           &kp MINUS  &kp EQUAL      &kp LEFT_PARENTHESIS  &kp RPAR  &kp ASTERISK  &kp BSPC
+&kp ESC    &kp EXCLAMATION  &kp AT  &kp HASH  &kp DOLLAR  &kp PERCENT      &kp CARET  &kp AMPERSAND  &kp LBKT              &kp RBKT  &kp BSLH      &kp GRAVE
 &kp LSHFT  &trans           &trans  &trans    &trans      &trans           &kp UNDER  &kp PLUS       &kp LBRC              &kp RBRC  &kp PIPE      &kp TILDE
                                     &kp LGUI  &trans      &kp BACKSPACE    &kp SPACE  &trans         &kp RALT
+            >;
+        };
+
+        Aerospace_Focus {
+            bindings = <
+&kp LA(TAB)            &trans             &trans         &trans         &kp LG(LA(LC(LS(F))))  &trans           &trans     &trans     &trans     &trans     &trans  &kp LG(LA(LC(BACKSPACE)))
+&kp ESC                &kp LS(LA(LG(L)))  &kp LA(LG(G))  &kp LA(LG(X))  &kp LSHIFT             &kp LG(LA(C))    &kp LA(H)  &kp LA(J)  &kp LA(K)  &kp LA(L)  &trans  &kp LA(LS(SEMICOLON))
+&kp LG(LA(LC(LS(R))))  &trans             &trans         &trans         &trans                 &trans           &trans     &trans     &trans     &trans     &trans  &trans
+                                                         &trans         &trans                 &trans           &trans     &mo 4      &trans
+            >;
+        };
+
+        Aerospace_workstations {
+            bindings = <
+&trans   &kp LA(Q)   &kp LA(W)   &kp LA(E)   &kp LA(R)   &kp LA(T)     &kp LA(Y)   &kp LA(U)   &kp LA(I)   &kp LA(O)   &kp LA(P)  &trans
+&kp ESC  &kp LA(N1)  &kp LA(N2)  &kp LA(N3)  &kp LA(N4)  &kp LA(N5)    &kp LA(N6)  &kp LA(N7)  &kp LA(N8)  &kp LA(N9)  &trans     &trans
+&trans   &trans      &kp LA(Z)   &kp LA(X)   &kp LA(C)   &kp LA(V)     &kp LA(B)   &kp LA(N)   &kp LA(M)   &trans      &trans     &trans
+                                 &trans      &trans      &trans        &trans      &trans      &trans
             >;
         };
     };
